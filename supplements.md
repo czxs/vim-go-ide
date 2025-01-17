@@ -3,7 +3,7 @@
 
 前段时间太忙了，太忙太忙了，好久都没有更新了，最近配置了下 vim ， 打算用 vim 来写 go ，将配置过程记录下来，也希望能够帮助到发现这个文章的你，通过配置，使得 vim 可以看起来像 ide 一样来开发 Go 。
 
-github 地址
+[github 地址](https://github.com/czxs/vim-go-ide.git)
 
 说实在的，如果喜好折腾，喜好自己来配置环境，可以配置一下，如果不是很熟练 vi/vim，还是踏踏实实使用 IDE 吧，比如 VSCode（我也会用） 、 GoLand 还都是不错的，不过你要是看到了我的这篇文档，就证明还是想要折腾一下，下面就是我折腾后的结果。
 
@@ -11,10 +11,10 @@ github 地址
 
 本配置是在 Ubuntu 18.04 下完成的， vim 版本是 VIM - Vi IMproved 8.0 ，开启 lantern （不考虑网络不通畅的情况）  
 
-配置 Go 环境  
+### 配置 Go 环境  
 既然是 Go 的开发环境，第一步当前就是准备好 。  
 
-安装 Go  
+### 安装 Go  
 到 golang.org 将安装包下载，并配置好环境， 推荐使用二进制版本，下载完成后直接解压缩就可以使用。如果无法访问 go 官网，可以考虑去 golang.google.cn 去下载。  
 
 wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz  
@@ -26,16 +26,17 @@ sudo tar xzvf go1.12.linux-amd64.tar.gz -C /usr/local/
 mkdir -p $HOME/go/{bin,pkg,src}  
 配置环境变量  
 
-用户 vim 创建一个配置文  
+### 用户 vim 创建一个配置文  
 vim /etc/profile.d/go.sh ，写入下面内容  
 
+```
 export GOPATH=$HOME/go   
 export GOROOT=/usr/local/go   
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin  
-
-Vim 基本配置  
+```
+### Vim 基本配置  
 打开 vimrc 文件 vim ~/.vimrc ，写入下面配置  
-
+```
 "==============================================================================  
 " vim 内置配置   
 "==============================================================================  
@@ -77,20 +78,21 @@ syntax on                    " 开启文件类型侦测
 filetype plugin indent on    " 启用自动补全  
 
 " 退出插入模式指定类型的文件自动保存  
-au InsertLeave *.go,*.sh,*.php write  
-插件管理  
+au InsertLeave *.go,*.sh,*.php write
+```
+## 插件管理  
 插件的用途就是可以很方便的管理 vim 的各种插件，快速安装配置以及清除，网上现在的帖子多数都是使用的 Vundle 这个插件，不过个人觉得这个管理工具在插件安装多了的时候不是很流畅，更喜好使用 vim-plug 这个插件，两个插件都有很清楚的安装文档，这里是介绍 vim-plug 。  
 
-安装插件  
+### 安装插件  
 在 Linux 下非常简单，直接通过 curl 下载即可（也可以手动下载，见官方文档）  
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \  
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim  
-配置插件  
+### 配置插件  
 插件的配置也非常简单，只要将所有的插件配置在 call plug#begin('~/.vim/plugged') 和 call plug#end() 之间即可，常见的插件基本上都可以从 github 中找到，如果 github 找不到的话基本上 vim.org 的脚本都可以在 vim-script 中找到备份  
 
 在刚刚的 ~/.vimrc 下面继续添加插件相关的配置  
-
+```
 " 插件开始的位置  
 call plug#begin('~/.vim/plugged')  
 
@@ -163,36 +165,37 @@ call plug#end()
 然后输入 :w 保存配置，在输入 :PlugInstall ，如下：  
   
 :w  
-:PlugInstall  
+:PlugInstall
+```
 插件会自动下载安装，看见上面显示 Finishing … Done 的内容，插件安装成功  
 
-插件删除  
+## 插件删除  
 如果想要删除插件，只要将不需要的插件注释或者删除，执行 :PlugClean 就可以自动清理了  
 
-插件配置  
+## 插件配置  
 上面一起安装了很多个插件，有些插件要单独配置，记录到下面  
 
-vim-go  
++ vim-go  
 这个是 go 语言支持插件，上面插件完成后还需要安装很多个 Go 的包才能正常工作，在 vim 中执行下面命令：  
 
-:GoInstallBinaries  
+```:GoInstallBinaries  ```
 出现 vim-go: installing finished! 安装成功，可以使用 Go 包的相关功能了  
   
 需要注意前面的 PATH 要配置正确，并且已经生效，如果配置正确没有生效，可以注销再登录查看  
 
-YouCompleteMe  
++ YouCompleteMe  
 这个插件是用来自动完成的，不过需要手动做一些额外的配置  
 
-a. 安装以来关系  
+#### a. 安装以来关系  
 
-sudo apt install build-essential cmake python3-dev  
-b. 编译  
+``` sudo apt install build-essential cmake python3-dev  ```
+#### b. 编译  
 
-cd ~/.vim/plugged/YouCompleteMe  
-# 编译，并加入 go 的支持  
-python3 install.py --go-completer   
-c. 配置和 SirVer/ultisnips 冲突的快捷键  
-
+``` cd ~/.vim/plugged/YouCompleteMe  ```
+##### 编译，并加入 go 的支持  
+``` python3 install.py --go-completer ```  
+#### c. 配置和 SirVer/ultisnips 冲突的快捷键  
+```
 let g:ycm_key_list_select_completion = ['<C-n>', '<space>']  
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']  
 let g:SuperTabDefaultCompletionType = '<C-n>'  
@@ -200,13 +203,14 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " better key bindings for UltiSnipsExpandTrigger  
 let g:UltiSnipsExpandTrigger = "<tab>"  
 let g:UltiSnipsJumpForwardTrigger = "<tab>"  
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"  
-其他插件  
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+```
+### 其他插件  
 其他的插件配置不多，直接看配置文件的注释即可，下面将所有的配置全部贴出来  
 
 下面是全部的 ~/.vimrc 中的配置，也可以直接下载我配置好的 vimrc 文件  
 
-
+```
 "==============================================================================  
 " vim 内置配置   
 "==============================================================================  
@@ -494,3 +498,4 @@ if has('gui_running')
     :nn <M-9> 9gt
     :nn <M-0> :tablast<CR>
 endif
+```
