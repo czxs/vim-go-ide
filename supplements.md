@@ -196,7 +196,7 @@ call plug#end()
 #### b. 编译  
 
 ``` cd ~/.vim/plugged/YouCompleteMe  ```  
-##### 编译，并加入 go 的支持  
++ 编译，并加入 go 的支持  
 ``` python3 install.py --go-completer ```  
 #### c. 配置和 SirVer/ultisnips 冲突的快捷键  
 ```
