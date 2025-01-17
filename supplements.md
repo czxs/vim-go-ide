@@ -16,14 +16,15 @@
 
 ### 安装 Go  
 到 golang.org 将安装包下载，并配置好环境， 推荐使用二进制版本，下载完成后直接解压缩就可以使用。如果无法访问 go 官网，可以考虑去 golang.google.cn 去下载。  
-
+```
 wget https://dl.google.com/go/go1.12.linux-amd64.tar.gz  
-sudo tar xzvf go1.12.linux-amd64.tar.gz -C /usr/local/  
+sudo tar xzvf go1.12.linux-amd64.tar.gz -C /usr/local/
+```
 配置 PATH 及 GOPATH  
 创建 Go 的工作空间（目录）  
 
 ## 这是默认的位置，也可以按照需求指定到其他目录
-mkdir -p $HOME/go/{bin,pkg,src}  
+``` mkdir -p $HOME/go/{bin,pkg,src}  ```
 配置环境变量  
 
 ### 用户 vim 创建一个配置文  
@@ -85,9 +86,10 @@ au InsertLeave *.go,*.sh,*.php write
 
 ### 安装插件  
 在 Linux 下非常简单，直接通过 curl 下载即可（也可以手动下载，见官方文档）  
-
+```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \  
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim  
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
 ### 配置插件  
 插件的配置也非常简单，只要将所有的插件配置在 call plug#begin('~/.vim/plugged') 和 call plug#end() 之间即可，常见的插件基本上都可以从 github 中找到，如果 github 找不到的话基本上 vim.org 的脚本都可以在 vim-script 中找到备份  
 
