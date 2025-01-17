@@ -1,5 +1,5 @@
-将 VIM 打造成 go 语言的 ide
- broqiang 的个人博客 /  8 /  18 / 创建于 5年前 / 更新于 4年前 /  1 个改进
+# 将 VIM 打造成 go 语言的 ide
+ 
 
 前段时间太忙了，太忙太忙了，好久都没有更新了，最近配置了下 vim ， 打算用 vim 来写 go ，将配置过程记录下来，也希望能够帮助到发现这个文章的你，通过配置，使得 vim 可以看起来像 ide 一样来开发 Go 。
 
@@ -22,18 +22,19 @@ sudo tar xzvf go1.12.linux-amd64.tar.gz -C /usr/local/
 配置 PATH 及 GOPATH
 创建 Go 的工作空间（目录）
 
-# 这是默认的位置，也可以按照需求指定到其他目录
+## 这是默认的位置，也可以按照需求指定到其他目录
 mkdir -p $HOME/go/{bin,pkg,src}
 配置环境变量
 
-用户 vim 创建一个配置文 vim /etc/profile.d/go.sh ，写入下面内容
+用户 vim 创建一个配置文
+vim /etc/profile.d/go.sh ，写入下面内容
 
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export GOPATH=$HOME/go 
+export GOROOT=/usr/local/go 
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 
+
 Vim 基本配置
 打开 vimrc 文件 vim ~/.vimrc ，写入下面配置
-
 
 "==============================================================================
 " vim 内置配置 
