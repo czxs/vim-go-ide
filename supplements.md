@@ -177,23 +177,25 @@ call plug#end()
 ## 插件配置  
 上面一起安装了很多个插件，有些插件要单独配置，记录到下面  
 
-+ vim-go  
-这个是 go 语言支持插件，上面插件完成后还需要安装很多个 Go 的包才能正常工作，在 vim 中执行下面命令：  
+### vim-go  
+这个是 go 语言支持插件，上面插件完成后还需要安装很多个 Go 的包才能正常工作，  
+在 vim 中执行下面命令：  
 
-```:GoInstallBinaries  ```
+```:GoInstallBinaries  ```  
+  
 出现 vim-go: installing finished! 安装成功，可以使用 Go 包的相关功能了  
   
 需要注意前面的 PATH 要配置正确，并且已经生效，如果配置正确没有生效，可以注销再登录查看  
 
-+ YouCompleteMe  
+### YouCompleteMe  
 这个插件是用来自动完成的，不过需要手动做一些额外的配置  
 
 #### a. 安装以来关系  
 
-``` sudo apt install build-essential cmake python3-dev  ```
+``` sudo apt install build-essential cmake python3-dev  ```  
 #### b. 编译  
 
-``` cd ~/.vim/plugged/YouCompleteMe  ```
+``` cd ~/.vim/plugged/YouCompleteMe  ```  
 ##### 编译，并加入 go 的支持  
 ``` python3 install.py --go-completer ```  
 #### c. 配置和 SirVer/ultisnips 冲突的快捷键  
