@@ -29,9 +29,9 @@ mkdir -p $HOME/go/{bin,pkg,src}
 用户 vim 创建一个配置文
 vim /etc/profile.d/go.sh ，写入下面内容
 
-export GOPATH=$HOME/go 
-export GOROOT=/usr/local/go 
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin 
+export GOPATH=$HOME/go   
+export GOROOT=/usr/local/go   
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin  
 
 Vim 基本配置
 打开 vimrc 文件 vim ~/.vimrc ，写入下面配置
